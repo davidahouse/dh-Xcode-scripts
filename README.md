@@ -13,9 +13,10 @@ If this doesn't work, make sure to set the execute flag on the script files (if 
 how to dig ditches or something).
 
 FAQ:
-What are the empty strings at the end of the set thePhrases line for?
+
+*What are the empty strings at the end of the set thePhrases line for?*
 These empty strings make sure that you don't get a phrase on every single build. Add more empty strings to get less talk.
 
-The phrases that you put in the file are stupid.
+*The phrases that you put in the file are stupid.*
 FORK YOU!
 

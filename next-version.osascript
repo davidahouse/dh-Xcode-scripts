@@ -1,0 +1,9 @@
+#!/usr/bin/osascript
+
+tell application "Xcode"
+	tell first project
+
+		set projectDir to (get project directory)
+		do shell script ("cd " & projectDir & "; agvtool next-version -all")
+	end tell
+end tell

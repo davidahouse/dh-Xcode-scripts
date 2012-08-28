@@ -2,7 +2,7 @@
 --
 -- set-version.osascript
 --
--- Adds a minimal GUI to Apple Generic Versioning (agvtool). Brings up two cancellable dialogs,
+-- Adds a minimal GUI to the Apple Generic Versioning (agvtool). Brings up two cancellable dialogs,
 -- the first asking for the publicly-visible marketing version (CFBundleShortVersion), the second
 -- asking for the internal project/build version (CFBundleVersion). Both dialogs are seeded with
 -- the current values for these project properties, for easy reference.
@@ -14,6 +14,16 @@ tell application "Xcode"
     tell first project
         set projectDir to (get project directory)
 
+        -- Detect current project version (CFBundleVersion), fails if versions hasn't been set up
+        try
+            set version_project to do shell script ("cd " & projectDir & "; agvtool what-version -terse")
+        on error theError
+            display alert "The foremost project does not have Apple Generic Version enabled. To fix this:\n
+ - Set your Versioning System (VERSIONING_SYSTEM) to \"apple-generic\".
+ - Set your Current Project Version (CURRENT_PROJECT_VERSION) to some floating point value that you'll increment every build. You could just start at 1, unless you already have builds out there with other numbers."
+            return theError
+        end error
+
         -- Detect current marketing version (CFBundleShortVersion)
         set version_marketing to do shell script ("cd " & projectDir & "; agvtool what-marketing-version -terse1")
         display dialog "Marketing Version Number" default answer version_marketing with icon 1
@@ -22,8 +32,7 @@ tell application "Xcode"
             do shell script ("cd " & projectDir & "; agvtool new-marketing-version " & version_marketing_new)
         end if
 
-        -- Detect current project version (CFBundleVersion)
-        set version_project to do shell script ("cd " & projectDir & "; agvtool what-version -terse")
+        -- Set new project version (CFBundleVersion)
         display dialog "Project/Build Version Number" default answer version_project with icon 1
         set version_project_new to text returned of result
         if version_project_new is not equal to version_project then

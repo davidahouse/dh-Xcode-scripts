@@ -1,4 +1,14 @@
 #!/usr/bin/osascript
+--
+-- set-version.osascript
+--
+-- Adds a minimal GUI to Apple Generic Versioning (agvtool). Brings up two cancellable dialogs,
+-- the first asking for the publicly-visible marketing version (CFBundleShortVersion), the second
+-- asking for the internal project/build version (CFBundleVersion). Both dialogs are seeded with
+-- the current values for these project properties, for easy reference.
+--
+-- If you're only looking to bump the project version, see next-version.osascript
+--
 
 tell application "Xcode"
     tell first project

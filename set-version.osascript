@@ -1,0 +1,15 @@
+#!/usr/bin/osascript
+
+tell application "Xcode"
+    tell first project
+        set projectDir to (get project directory)
+
+        -- detect current marketing version (CFBundleShortVersion)
+        set version_marketing to do shell script ("cd " & projectDir & "; agvtool what-marketing-version -terse1")
+        set version_dialog to display dialog "Marketing Version Number" default answer version_marketing buttons {"OK"} default button "OK" with icon 1
+
+        -- detect current project version (CFBundleVersion)
+        set version_project to do shell script ("cd " & projectDir & "; agvtool what-version -terse")
+        set version_dialog2 to display dialog "Project/Build Version Number" default answer version_project buttons {"OK"} default button "OK" with icon 1
+    end tell
+end tell

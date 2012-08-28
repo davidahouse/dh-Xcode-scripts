@@ -14,7 +14,7 @@ tell application "Xcode"
     tell first project
         set projectDir to (get project directory)
 
-        -- Detect current project version (CFBundleVersion), fails if versions hasn't been set up
+        -- Detect current project version (CFBundleVersion), fails if versioning hasn't been set up
         try
             set version_project to do shell script ("cd " & projectDir & "; agvtool what-version -terse")
         on error theError

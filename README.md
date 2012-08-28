@@ -20,8 +20,12 @@ These empty strings make sure that you don't get a phrase on every single build.
 *The phrases that you put in the file are stupid.*
 FORK YOU!
 
-other
+next-version
 ===================
 
-next-version.osascript is an AppleScript that you can invoke from a Behavior that will execute the agvtool next-version -all command in your current project.
+An AppleScript that you can invoke from a Behavior which will execute the agvtool next-version -all command in your current project.
 
+set-version
+===================
+
+An AppleScript that you can invoke from a Behavior which will execute the agvtool 'new-marketing-version' and 'new-version -all' commands in your current project with dialogs pre-filled with the current values for each.

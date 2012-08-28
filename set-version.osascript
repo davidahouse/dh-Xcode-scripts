@@ -4,20 +4,20 @@ tell application "Xcode"
     tell first project
         set projectDir to (get project directory)
 
-        -- detect current marketing version (CFBundleShortVersion)
+        -- Detect current marketing version (CFBundleShortVersion)
         set version_marketing to do shell script ("cd " & projectDir & "; agvtool what-marketing-version -terse1")
         display dialog "Marketing Version Number" default answer version_marketing buttons {"OK"} default button "OK" with icon 1
         set version_marketing_new to text returned of result
-        -- if version_marketing_new != version_marketing then
+        if version_marketing_new is not equal to version_marketing then
             do shell script ("cd " & projectDir & "; agvtool new-marketing-version " & version_marketing_new)
-        -- end if
+        end if
 
-        -- detect current project version (CFBundleVersion)
+        -- Detect current project version (CFBundleVersion)
         set version_project to do shell script ("cd " & projectDir & "; agvtool what-version -terse")
         display dialog "Project/Build Version Number" default answer version_project buttons {"OK"} default button "OK" with icon 1
         set version_project_new to text returned of result
-        -- if version_project_new != version_project then
+        if version_project_new is not equal to version_project then
             do shell script ("cd " & projectDir & "; agvtool new-version -all " & version_project_new)
-        -- end if
+        end if
     end tell
 end tell

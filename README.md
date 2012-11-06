@@ -29,3 +29,8 @@ set-version
 ===================
 
 An AppleScript that you can invoke from a Behavior which will execute the agvtool 'new-marketing-version' and 'new-version -all' commands in your current project with dialogs pre-filled with the current values for each.
+
+enable-versioning.rb
+===================
+
+This ruby script will update your Xcode project to apple generic versioning and will set the project version to 1.
